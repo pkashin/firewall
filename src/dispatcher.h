@@ -1,6 +1,6 @@
 #ifndef SRC_DISPATCHER_H_
 #define SRC_DISPATCHER_H_
 
-int run();
+int run(const int *argc, char ***argv);
 
 #endif  // SRC_DISPATCHER_H_
