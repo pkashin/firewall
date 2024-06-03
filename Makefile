@@ -1,7 +1,7 @@
 # Компилятор и флаги
 OS=$(shell uname -s)
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra -O2 -std=c17 -I./src --coverage
+CFLAGS = -Werror -Wall -Wextra -O0 -std=c17 -I./src --coverage #-g
 LDFLAGS = -lcheck --coverage
 
 # Директории
@@ -21,8 +21,8 @@ TESTS = $(wildcard $(TEST_DIR)/*.c)
 all: clean build test deploy
 
 # Запуск программы
-run: all
-	./$(DEPLOY_DIR)/firewall
+run:
+	./$(DEPLOY_DIR)/firewall < input_files/input.txt
 
 # Правила сборки
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
@@ -50,8 +50,8 @@ test: $(patsubst $(TEST_DIR)/test_%.c,$(TEST_DIR)/test_%,$(TESTS))
         $$test || exit 1; \
     done
 	echo "All tests passed!"
-	mv ./*.gcda $(BUILD_DIR)
-	mv ./*.gcno $(BUILD_DIR)
+#	mv ./*.gcda $(BUILD_DIR)
+#	mv ./*.gcno $(BUILD_DIR)
 
 # Размещение файлов сборки
 deploy: $(BUILD_DIR)/firewall

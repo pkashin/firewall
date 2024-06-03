@@ -12,6 +12,12 @@
 ![Cppcheck](https://img.shields.io/badge/Cppcheck-2.14.1-blue?style=plastic)
 ![check](https://img.shields.io/badge/check-0.15.2-blue?style=plastic)
 
+<p align="center">
+    <img src="materials/img/img1.png" alt="Покрытие кода" width="1666"/>
+    <br>
+    Покрытие кода
+</p>
+
 ## Структура проекта
 
 ```

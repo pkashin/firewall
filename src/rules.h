@@ -3,12 +3,14 @@
 
 #include <arpa/inet.h>
 #include <netinet/in.h>
-#include <stdbool.h>
-#include <network_utils.h>
+#include <packet_utils.h>
 
-// Максимальное количество правил
-#define MAX_RULES 100
+// Значения по умолчанию
+#define DEFAULT_IP_PREFIX 32
+#define DEFAULT_IP "0.0.0.0"
+#define DEFAULT_PROTOCOL ANY
 
+// Структура для хранения преобразованных правил
 typedef struct {
     struct in_addr src;
     int src_prefix;
@@ -18,12 +20,15 @@ typedef struct {
     verdict_t verdict;
 } rule_t;
 
-extern rule_t rules[MAX_RULES];
+// Глобальные переменные для хранения правил и их количества
+extern rule_t *rules;
 extern int rules_count;
 
-bool add_rule(const char *src_ip, int src_prefix, const char *dst_ip,
-              int dst_prefix, protocol_t proto, verdict_t verdict);
-void init_rules(void);
-void print_rules(void);
+// Указатель на функцию для выделения памяти
+extern void* (*allocate_memory)(size_t size);
+
+int init_rules();
+void print_rules();
+void free_rules();
 
 #endif  // SRC_RULES_H_
